@@ -1,11 +1,9 @@
 # Use an official Rust runtime as a parent image
-FROM rust:1.54
+FROM rust:1.54-buster as builder
 
+RUN rustup target add x86_64-unknown-linux-musl
 # Set the working directory in the container to /app
 WORKDIR /app
-
-# Install ca-certificates
-RUN apt-get update && apt-get install -y ca-certificates && update-ca-certificates
 
 # Copy the current directory contents into the container at /app
 COPY . /app
@@ -16,8 +14,26 @@ RUN rustup update && cargo update
 # Switch to the nightly version of Rust
 RUN rustup default nightly
 
-# Build the application
-RUN cargo build --release
+
+# Install musl-tools and set the linker to musl-gcc
+RUN apt-get update && apt-get install -y musl-tools
+ENV RUSTFLAGS="-C linker=musl-gcc"
+ENV CC=musl-gcc
+
+# Build the application without the --release flag
+RUN cargo build --target x86_64-unknown-linux-musl
+
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
+
+# Set the working directory in the container to /app
+WORKDIR /app
+
+# Install the transformers library
+RUN pip install transformers
+
+# Copy the binary from the builder stage
+COPY --from=builder /app/target/x86_64-unknown-linux-musl/debug/rust_python_interop .
 
 # Set the startup command to run your binary
-CMD ["/app/target/release/rust_python_interop"]
+CMD ["./rust_python_interop"]

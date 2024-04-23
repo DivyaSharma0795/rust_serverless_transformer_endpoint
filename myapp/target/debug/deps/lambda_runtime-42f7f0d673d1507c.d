@@ -1,0 +1,10 @@
+C:\Users\divya\Documents\Duke\MIDS\Semester 2\Cloud\ids721_ds655_miniproject10\myapp\target\debug\deps\liblambda_runtime-42f7f0d673d1507c.rmeta: C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\lib.rs C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\client.rs C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\requests.rs C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\types.rs
+
+C:\Users\divya\Documents\Duke\MIDS\Semester 2\Cloud\ids721_ds655_miniproject10\myapp\target\debug\deps\liblambda_runtime-42f7f0d673d1507c.rlib: C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\lib.rs C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\client.rs C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\requests.rs C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\types.rs
+
+C:\Users\divya\Documents\Duke\MIDS\Semester 2\Cloud\ids721_ds655_miniproject10\myapp\target\debug\deps\lambda_runtime-42f7f0d673d1507c.d: C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\lib.rs C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\client.rs C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\requests.rs C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\types.rs
+
+C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\lib.rs:
+C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\client.rs:
+C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\requests.rs:
+C:\Users\divya\.cargo\registry\src\index.crates.io-6f17d22bba15001f\lambda_runtime-0.3.0\src\types.rs:

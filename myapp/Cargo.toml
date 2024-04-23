@@ -4,5 +4,7 @@ version = "0.1.0"
 edition = "2018"
 
 [dependencies]
+lambda_runtime = "0.3.0"
+tokio = { version = "1", features = ["full"] }
 pyo3 = { version = "0.15.1", features = ["extension-module"] }
 serde_json = "1.0"

@@ -1,7 +1,8 @@
+use lambda_runtime::{handler_fn, Context, Error};
 use pyo3::prelude::*;
 use serde_json::Value;
 
-fn infer(event: Value) -> PyResult<()> {
+async fn infer(event: Value, _: Context) -> Result<(), Error> {
     let prompt = event["prompt"].as_str().unwrap().to_string();
     let gil = Python::acquire_gil();
     let py = gil.python();
@@ -41,11 +42,27 @@ fn infer(event: Value) -> PyResult<()> {
     Ok(())
 }
 
-fn main() {
+#[tokio::main]
+async fn main() -> Result<(), Error> {
     pyo3::prepare_freethreaded_python();
-    let prompt = serde_json::json!({"prompt": "Hello, world!"});
-    match infer(prompt) {
-        Ok(_) => println!("Success!"),
-        Err(e) => println!("Error: {:?}", e),
+    let func = handler_fn(infer);
+    lambda_runtime::run(func).await?;
+    Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+    
+    #[tokio::test]
+    async fn test_infer() {
+        pyo3::prepare_freethreaded_python();
+        let event = json!({
+            "prompt": "Hello, world!"
+        });
+        let context = Context::default();
+        let result = infer(event, context).await;
+        assert!(result.is_ok());
     }
 }

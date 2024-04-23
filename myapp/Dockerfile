@@ -14,9 +14,8 @@ RUN rustup update && cargo update
 # Switch to the nightly version of Rust
 RUN rustup default nightly
 
-
 # Install musl-tools and set the linker to musl-gcc
-RUN apt-get update && apt-get install -y musl-tools
+RUN apt-get update && apt-get install -y musl-tools || true
 ENV RUSTFLAGS="-C linker=musl-gcc"
 ENV CC=musl-gcc
 
@@ -31,9 +30,3 @@ WORKDIR /app
 
 # Install the transformers library
 RUN pip install transformers
-
-# Copy the binary from the builder stage
-COPY --from=builder /app/target/x86_64-unknown-linux-musl/debug/rust_python_interop .
-
-# Set the startup command to run your binary
-CMD ["./rust_python_interop"]

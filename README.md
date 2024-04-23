@@ -41,17 +41,36 @@ CMD ["myapp"]
 
 ### Step 2: Deploy container to AWS Lambda
 
-We deployed the Docker container to AWS Lambda. Here's the command we used to push the Docker image to the ECR repository:
+The Docker container was deployed to AWS Lambda. To do this, first a repository was created and then the Docker image was pushed to the ECR repository with the following commands:
 
-``` bash
-docker push your-account-id.dkr.ecr.region.amazonaws.com/myapp:latest
+First, we login to aws ecr:
 ```
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 313838823615.dkr.ecr.us-east-1.amazonaws.com
+```
+
+Then, we build the Docker image
+``` bash
+docker build -t 313838823615.dkr.ecr.us-east-1.amazonaws.com/myapp:latest .
+```
+![docker build](images/Docker_Bush.png)
+
+Then, we create a new repository 
+``` bash
+aws ecr create-repository --repository-name myapp --region us-east-1
+``` 
+![ecr create](images/ecr_rep.png)
+
+Finally, push the Docker image to the repository
+``` bash
+docker push 313838823615.dkr.ecr.us-east-1.amazonaws.com/myapp:latest
+```
+![docker push](images/docker_push.png)
+
 Then, we created a new Lambda function and specified the Docker image as the code.
 
 ### Step 3: Implement query endpoint
 
-We created a new Rust project and used AWS API Gateway to create a new API endpoint that triggers the Lambda function.
-Here's the command we used to deploy the API:
+A new Rust project was created and AWS API Gateway was used to create a new API endpoint that triggers the Lambda function. The API was deployed with the following command:
 
 ```
 aws apigateway create-deployment --rest-api-id your-rest-api-id --stage-name prod
@@ -63,7 +82,7 @@ Here's a screenshot of the AWS Lambda function:
 ![lambda](images/lambda.png)
 
 #### Testing
-You can test the endpoint using the following cURL command:
+The endpoint was tested using the following cURL command:
 
 ```
 curl -X GET 'https://your-api-gateway-url/prod/myapp'

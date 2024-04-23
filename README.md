@@ -52,19 +52,19 @@ Then, we build the Docker image
 ``` bash
 docker build -t 313838823615.dkr.ecr.us-east-1.amazonaws.com/myapp:latest .
 ```
-![docker build](images/Docker_Bush.png)
+![docker build](Images/Docker_Build.png)
 
 Then, we create a new repository 
 ``` bash
 aws ecr create-repository --repository-name myapp --region us-east-1
 ``` 
-![ecr create](images/ecr_rep.png)
+![ecr create](Images/ecr_rep.png)
 
 Finally, push the Docker image to the repository
 ``` bash
 docker push 313838823615.dkr.ecr.us-east-1.amazonaws.com/myapp:latest
 ```
-![docker push](images/docker_push.png)
+![docker push](Images/docker_push.png)
 
 Then, we created a new Lambda function and specified the Docker image as the code.
 
@@ -79,7 +79,7 @@ aws apigateway create-deployment --rest-api-id your-rest-api-id --stage-name pro
 #### Screenshots
 Here's a screenshot of the AWS Lambda function:
 
-![lambda](images/lambda.png)
+![lambda](Images/lambda.png)
 
 #### Testing
 The endpoint was tested using the following cURL command:

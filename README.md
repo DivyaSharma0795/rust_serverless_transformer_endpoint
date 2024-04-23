@@ -38,6 +38,11 @@ RUN apt-get update && apt-get install -y libssl-dev
 COPY --from=builder /usr/local/cargo/bin/myapp /usr/local/bin/myapp
 CMD ["myapp"]
 ```
+Testing the code:
+![Local Test](Images/tocal_test.png)
+
+
+![Cargo Test](Images/test_passed.png)
 
 ### Step 2: Deploy container to AWS Lambda
 
@@ -79,7 +84,7 @@ aws apigateway create-deployment --rest-api-id your-rest-api-id --stage-name pro
 #### Screenshots
 Here's a screenshot of the AWS Lambda function:
 
-![lambda](Images/lambda.png)
+![lambda](Images/Lambda.png)
 
 #### Testing
 The endpoint was tested using the following cURL command:
